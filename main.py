@@ -62,6 +62,10 @@ As inscrições terminam em 10 minutos
         try:
             reply = replies.next()
             # print(reply.user.screen_name)
+            for linha in participantesVivos:
+                for participante in linha:
+                    if(participante == reply.user.screen_name):
+                        continue
             if(cont % 2 == 0):
                 participantesVivos[i].append(reply.user.screen_name)
             else:
