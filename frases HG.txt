@@ -1,15 +1,28 @@
 MATA MATA
+com uma tocha improvisada
+usando fogo
+com uma estaca
+com uma flecha
+com explosivos da cornucopia
+com um ferimento na carótida
+com um ferimento na femural
+quebrando as pernas e deixando morrer
+com veneno natural
+asfixiando
+ 
+quando se encontraram no rio
+pq achou que morreria enquanto dormia
 na mão
 utilizando uma pedra
 por pura sorte
-espreitando no sono
+espreitando enquanto dormia
 com uma pedra afiada
 roubando sua arma
 com uma lança improvisada
 com uma flecha de pedra
 com uma armadilha
 com uma foice da cornucopia
-em uma briga no soco
+na troca de soco mesmo
 com um machado improvisado
 e fica insano
 esfaqueando
@@ -22,6 +35,9 @@ com a ponta de uma flecha
 empurrando do precipício
 enforcado na floresta
 traindo a parceria secreta
+com uma machadada na cabeça
+com uma porretada na nuca
+com uma flechada no joelho
 CAUSAS NATURAIS
 passou fome e morreu
 morreu de hipotermia depois de um mergulho
@@ -44,13 +60,35 @@ morreu de hemorragia interna
 morreu de hipotermia
 não aguentava mais e cometeu suicidio
 morreu enquanto dormia
+teve intoxicação e morreu
+comeu uma planta venenosa e morreu
+teve insolação e morreu
+enquanto fugia de um animal, tropeçou e bateu a cabeça
+se matou com a faca que fez
+foi devorado por piranhas enquanto pescava
+morreu enquanto caçava comida
 ITEMS
+um binóculo
+um AIRFRYER PHILIPS WALITA
+um cantil
+um punhal
+fita
+um punhado de corda
+uma muda de roupa
+um laço
+um porrete
+uma capa
+um escudo pequeno
+uma vara de pescar
+um antídoto genérico
+um relógio
+talheres
 um machado
 uma lança
 um arco
 algumas flechas
 um kit médico
-um faca
+uma faca
 um martelo
 um bandaid
 um isqueiro
@@ -59,6 +97,48 @@ fósforos
 um mapa
 comida
 NOITE
+teve um ataque de pânico
+se desespera e começa a correr aleatoriamente
+deita e respira fundo até pegar no sono
+verifica por marcas no corpo
+deita e dorme
+teve crise existêncial
+deitou em posição fetal e chorou
+soluça de choro
+se esconde
+entra em desespero
+se assusta com os barulhos da floresta
+fica de vigia a noite inteira
+procura se distrair
+se sente só
+reza
+faz uma prece
+conta carneiros
+se camufla com folhas e galhos
+conversa com as plantas
+conversa com as vozes da sua cabeça
+sente falta de casa
+sente medo
+já se convenceu que vai morrer
+está cansado e apenas dorme
+não consegue dormir
+tem insônia
+pesadelos sondando a mente
+é picado por mosquitos
+tem ataque de pânico
+sente frio
+sente fome
+se arrepende de se oferecer de tributo
+chora de nervoso
+pensa na família
+pensa nos amigos
+só chora
+pensa na sua dupla
+verifica as armadilhas
+procura água
+apenas dorme
+olha as estrelas
+ri de nervoso
 tenta cantar para dormir
 olha para as estrelas e tenta se distrair
 faz uma pequena fogueira
@@ -73,13 +153,37 @@ prepara uma faca de pedra
 dorme feito um bebê
 dorme em cima de folhas
 dorme em uma árvore
-dorme camuflado na lama
+dorme se camuflando na lama
 não consegue dormir
 prepara cogumelos que encontrou
 revisa seus equipamentos
 seca suas roupas
 pratica yoga
 se exercita
+pensa na vida
+observa as nuvens
+deita e chora
+pensa nos tributos já mortos
+tenta não pensar nos tributos na arena
+lembra das brigas na cornucópia
+prepara sua cama com galhos e folhas
+se isola do frio do chão
+está em choque com tudo que está acontecendo
+tenta se matar mas não consegue
+pula pra se matar e desmaia
+desmaia
+lembra de uma piada e ri
+lembra de como era a vida uns dias atrás
+tenta se encorajar com tudo
+pensa em voltar a cornucópia
+lembra de seu treinamento no distrito
+pensa na glória da vitória
+deu RT nesse post
+deu Fav nesse post
+marca um amigo pra jogar o próximo HG
+dorme e sonha tranquilo
+dorme sem sonhos
+está morrendo aos poucos
 NOITE EM DUPLA
 se juntam para caçar tributos
 se juntam para caçar tributos
@@ -89,7 +193,7 @@ dormem juntos pra evitar hipotermia
 fazem uma fogueira
 cuidam das feridas
 preparam comida
-se aquecem juntos
+se aquecem
 falam sobre os sobreviventes
 falam sobre os familiares
 estão no limiar da loucura
@@ -99,3 +203,16 @@ formam uma aliança provisória
 fazem armadilhas
 fazem armas
 cantam juntos e shallow now
+juntam-se e vão caçar
+montam planos
+caçam animais
+deram RT nesse post
+deram Fav nesse post
+acham uma caverna seca
+se assustam com os barulhos da noite
+conversam sobre os tributos vivos
+conversam sobre os possíveis tributos mortos
+entram em choque
+desmaiam
+estão com frio, mas alertas
+montam armas provisórias
