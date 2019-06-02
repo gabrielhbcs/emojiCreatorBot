@@ -39,26 +39,41 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 
+def tweetarXmin(texto, tempo):
+    print(f"\tTweetando: \n{texto}")
+    #api.update_status(status = texto)
+    print(f"\tAguardando {tempo} segundos\n")
+    #time.sleep(tempo)
+
+
+def removeDaListaVivos(lista1, lista2, morre):
+    for linha in lista1:
+        if (morre in linha):
+            linha.remove(morre)
+    lista2.remove(morre)
+    return lista1, lista2
+
 def hungerGamesEvent():
     statusText = '''
 QUE COMECEM OS JOGOS VORAZES
 Para participar comente algo nesse status, deixe seu grito de guerra, seu texto motivacional, qlqr coisa.
 Você será notificado da sua participação
 Se ganhar vc será reconhecido ;)
-\n
+
 RT/Fav pra fortalecer o bot <3
 As inscrições terminam em 10 minutos
 '''
-    print(f"Tweetando:\n{statusText}")
-    api.update_status(status = statusText)
-    time.sleep(600)
+    tweetarXmin(statusText, 600)
+
     print("Pegando nomes do último status")
-    tweet = api.user_timeline(screen_name=api.me().screen_name, count=1, tweet_mode='extended')[0]
-    replies = tweepy.Cursor(api.search, q=f'to:@{api.me().screen_name}', since_id=tweet.id, tweet_mode='extended').items()
+    #tweet = api.user_timeline(screen_name=api.me().screen_name, count=1, tweet_mode='extended')[0]
+    #replies = tweepy.Cursor(api.search, q=f'to:@{api.me().screen_name}', since_id=tweet.id, tweet_mode='extended').items()
     participantesVivos = [[]]
+    participantesVivosLista = []
     cont = 0
     i = 0
     while True and cont < 12:
+        '''
         try:
             reply = replies.next()
             # print(reply.user.screen_name)
@@ -72,28 +87,213 @@ As inscrições terminam em 10 minutos
                 participantesVivos[i].append(reply.user.screen_name)
                 participantesVivos.append([])
                 i += 1
+            participantesVivosLista.append(reply.user.screen_name)
             cont += 1
         except:
             break
+        '''
+        '''
+        for _ in range(4):
+            for _ in range(2):
+                participante = input("Digite um nome: ")
+                if (cont % 2 == 0):
+                    participantesVivos[i].append(participante)
+                else:
+                    participantesVivos[i].append(participante)
+                    participantesVivos.append([])
+                    i += 1
+                participantesVivosLista.append(participante)
+                cont += 1
+        '''
+        participantesVivos = [['Gabriel','Werneck'],['Yasmin','Mayara'],['Luciano','Tut'],['Gustavo','Amanda'],['Pedro','Mary'],['Douglas','Caio'],[]]
+        participantesVivosLista = ['Gabriel','Werneck','Yasmin','Mayara','Luciano','Tut','Gustavo','Amanda','Pedro','Mary','Douglas','Caio']
+        cont = 10
+        participantesOriginais = participantesVivos.copy()
+        break
+
+
     if (cont < 6):
-        print("Não há pessoas suficientes")
-        api.update_status(status = "Preciso de pelo menos 6 pessoas pra rodar o evento :( \n #NaoVaiTerHG")
+        statusText = "Preciso de pelo menos 6 pessoas pra rodar o evento :( \n #NaoVaiTerHG"
+        tweetarXmin(statusText, 600)
         return None
     statusText = '''
 Conheça os participantes do próximo HungerGames:\n
 '''
     i = 0
+    participantesVivos.pop()
     for linha in participantesVivos:
         statusText += f"\nD{i + 1}:"
         for pessoa in linha:
-            statusText += " @"+pessoa
-        statusText += "\n"
+            statusText += " @"+pessoa+" e"
+        statusText = statusText[:-1]+"\n"
+        i += 1
     statusText += "\nO evento começará em 5 minutos!"
-    print(f"Tweetando:\n{statusText}")
-    api.update_status(status = statusText)
-    time.sleep(300)
-    while True:
-        pass
+    tweetarXmin(statusText, 300)
+
+    acabou = False
+    primeiroMomento = True
+    while not acabou:
+        aindaNaoMataram = participantesVivosLista.copy()
+        mortesDoDia = []
+        # primeiro momento
+        if (primeiroMomento):
+            primeiroMomento = False
+            addSorte = 0
+            sorte = 0
+            statusText = ""
+            dado = random.randint(0,100)
+            if (dado % 42 == 0):
+                morre = participantesVivosLista[random.randint(0,len(participantesVivosLista) - 1)]
+                participantesVivos, participantesVivosLista = removeDaListaVivos(participantesVivos, participantesVivosLista, morre)
+                statusText += f"\na plataforma de @{morre} explode pq começou se afobou"
+            statusText += f"\ncomeça a corrida, alguns se escondem, outros tentam a sorte na cornucopia, sangue rola logo no início"
+            while sorte <= 45:
+                if (len(aindaNaoMataram) < 2):
+                    break
+                mata, morre = random.sample(aindaNaoMataram, 2)
+                aindaNaoMataram.remove(mata)
+                aindaNaoMataram.remove(morre)
+
+
+                participantesVivos, participantesVivosLista = removeDaListaVivos(participantesVivos, participantesVivosLista, morre)
+                statusText += f"\n@{mata} matou @{morre}"
+                mortesDoDia.append(morre)
+
+                addSorte += random.randint(10,15)
+                sorte = random.randint(0, 100) + addSorte
+                if (len(participantesVivosLista) == 1):
+                    acabou = True
+                    break
+
+
+            tweetarXmin(statusText, 300)
+
+        if (acabou):
+            break
+
+        addSorte = 0
+        sorte = random.randint(0,100)
+        statusText = ""
+        # while de X mata Y
+        if(sorte > 90):
+            statusText += "Não houveram combates diretos.\nsorte? talvez\ncoincidência? acho que não\nhotel? trivago"
+        while sorte <= 90:
+            if(len(aindaNaoMataram) < 2):
+                break
+            mata, morre = random.sample(aindaNaoMataram, 2)
+            aindaNaoMataram.remove(mata)
+            aindaNaoMataram.remove(morre)
+
+            participantesVivos, participantesVivosLista = removeDaListaVivos(participantesVivos, participantesVivosLista, morre)
+            statusText += f"@{mata} matou @{morre}\n"
+            mortesDoDia.append(morre)
+
+            addSorte += random.randint(10,15)
+            sorte = random.randint(0, 100) + addSorte
+            if(len(participantesVivosLista) == 1):
+                acabou = True
+                break
+
+        tweetarXmin(statusText, 300)
+
+        if(acabou):
+            break
+
+
+        # Evento morrer sozinho
+        addSorte = 0
+        sorte = random.randint(0,100)
+        statusText = ""
+        if (sorte > 50):
+            statusText = "ninguém morreu por causas naturais hoje.\nparece que os sobreviventes não são tão estúpidos assim :]"
+        while sorte <= 50:
+            addSorte += random.randint(15,20)
+            sorte = random.randint(0,100) + addSorte
+            morre = random.sample(participantesVivosLista, 1)[0]
+            participantesVivos, participantesVivosLista = removeDaListaVivos(participantesVivos, participantesVivosLista, morre)
+            mortesDoDia.append(morre)
+
+            statusText += f"\n@{morre} morreu"
+            if(len(participantesVivosLista) == 1):
+                acabou = True
+                break
+
+        tweetarXmin(statusText, 300)
+
+        # patrocinador ajudando
+        addSorte = 0
+        sorte = random.randint(0,100)
+        statusText = ""
+        if (sorte <= 10):
+            sortudo = random.sample(participantesVivosLista, 1)
+            statusText += f"olha que sorte\nparece que os patrocinadores estão de olho em @{sortudo} e lhe deram um item\nesperamos que saiba como utilizar"
+            tweetarXmin(statusText, 300)
+
+        # Anunciar mortos do dia
+        if(len(mortesDoDia) > 0):
+            if(len(mortesDoDia) == 1):
+                i = 1
+                for linha in participantesOriginais:
+                    if(mortesDoDia[0] in linha):
+                        statusText = f"hoje fora ouvido apenas um tiro: \n@{mortesDoDia[0]} do distrito {i} \nserá bom ou ruim?"
+                        break
+                    i += 1
+            else:
+                statusText = f'''
+Foram ouvidos hoje {len(mortesDoDia)} tiros de canhão:
+'''
+                for morto in mortesDoDia:
+                    statusText += f"\n@{morto} "
+                    i = 1
+                    for linha in participantesOriginais:
+                        if (morto in linha):
+                            statusText += f"do distrito {i}"
+                            break
+                        i += 1
+            tweetarXmin(statusText, 300)
+        else:
+            statusText = "Não foram ouvidos tiros de canhão hoje, algo de errado não está certo, muitas precauções, muita habilidade, quem sairá com a glória?!"
+            tweetarXmin(statusText, 300)
+
+
+
+        # Evento para os 2 útilmos participantes
+        if (len(participantesVivosLista) == 2):
+            statusText = ""
+            dado = random.randint(1, 200)
+            if (dado == 99):
+                statusText = f'''
+@{participantesVivosLista[0]} já não é a mesma pessoa de quando começou.
+@{participantesVivosLista[1]} também não está nada bem
+ambos se encontram na cornucopia
+lágrimas escorrem
+ambos se encaram
+o destino é certo
+...
+ambos decidem se matar em protesto ao banho de sangue
+'''
+                tweetarXmin(statusText, 0)
+                return None
+            mata, morre = random.sample(participantesVivosLista, 2)
+
+            statusText += f"Os ultimos sobreviventes se encontram\n Utilizam de todo seu potencial e\n@{mata} mata @{morre}\ntornando-se a última pessoa de pé em uma arena ensanguentada\nParabéns merecidamente!\nSigam a página, RT+Fav :]"
+
+            tweetarXmin(statusText, 0)
+            return None
+
+
+    # 1 sobreviveu
+    vencedor = participantesVivosLista[0]
+    statusText = f'''
+Depois de muita luta, fuga, camuflagem e esperteza
+quem sobreviveu foi @{vencedor}
+
+Parabéns, merecidamente
+
+Sigam a página para mais eventos, Fav+RT = Humilde :]
+'''
+    tweetarXmin(statusText, 0)
+
 
 
 def tweetToTwitter():
