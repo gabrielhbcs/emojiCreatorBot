@@ -51,7 +51,7 @@ def tweetarXmin(texto, tempo):
 
 def tweetarXminReply(texto, tempo, tweet):
     print(f"Respondendo o útlimo tweet:\n{texto}")
-    api.update_status(status=statusText, in_reply_to_status_id=tweet.id)
+    api.update_status(status=texto, in_reply_to_status_id=tweet.id)
     esperar(tempo)
 
 def removeDaListaVivos(lista1, lista2, morre):
@@ -108,6 +108,7 @@ def anunciarMortos(mortesDoDia, participantesOriginais, participantesVivosLista,
                     statusText = ""
 
 def hungerGamesEvent():
+
     #region Post de inscrição dos tributos (+600 segs)
     statusText = '''
 QUE COMECEM OS JOGOS VORAZES
@@ -130,7 +131,7 @@ As inscrições terminam em 10 minutos
     cont = 0
     i = 0
     while cont < 24:
-        '''
+
         #region Juntando os participantes das respostas do ultimo tweet nos vetores de participantes
         try:
             reply = replies.next()
@@ -160,13 +161,12 @@ As inscrições terminam em 10 minutos
             print("Não há mais replies")
             break
         #endregion
-        '''
-        #region Adicionado listas predefinidas para testes
 
-        participantesVivos = [['Gabriel3wefsd','Werneckasfq'],['Yasminhtyhd','Mayaraffrewg'],['Lucianosdgvrth','Tutdasgwefgs'],['Gustavobtgym','Amandaikghd'],['Pedroryjfs','Maryyxjvfb'],['Douglasxhjxdh','Caiolmxzsdk'],['AGabriel3wefsd','AWerneckasfq'],['AYasminhtyhd','AMayaraffrewg'],['ALucianosdgvrth','ATutdasgwefgs'],['AGustavobtgym','AAmandaikghd'],['APedroryjfs','AMaryyxjvfb'],['ADouglasxhjxdh','ACaiolmxzsdk'],[]]
-        participantesOriginais = [['Gabriel3wefsd','Werneckasfq'],['Yasminhtyhd','Mayaraffrewg'],['Lucianosdgvrth','Tutdasgwefgs'],['Gustavobtgym','Amandaikghd'],['Pedroryjfs','Maryyxjvfb'],['Douglasxhjxdh','Caiolmxzsdk'],['AGabriel3wefsd','AWerneckasfq'],['AYasminhtyhd','AMayaraffrewg'],['ALucianosdgvrth','ATutdasgwefgs'],['AGustavobtgym','AAmandaikghd'],['APedroryjfs','AMaryyxjvfb'],['ADouglasxhjxdh','ACaiolmxzsdk'],[]]
-        participantesVivosLista = ['Gabriel3wefsd','Werneckasfq','Yasminhtyhd','Mayaraffrewg','Lucianosdgvrth','Tutdasgwefgs','Gustavobtgym','Amandaikghd','Pedroryjfs','Maryyxjvfb','Douglasxhjxdh','Caiolmxzsdk','AGabriel3wefsd','AWerneckasfq','AYasminhtyhd','AMayaraffrewg','ALucianosdgvrth','ATutdasgwefgs','AGustavobtgym','AAmandaikghd','APedroryjfs','AMaryyxjvfb','ADouglasxhjxdh','ACaiolmxzsdk']
-        cont = 24
+        #region Adicionado listas predefinidas para testes
+        #participantesVivos = [['Gabriel3wefsd','Werneckasfq'],['Yasminhtyhd','Mayaraffrewg'],['Lucianosdgvrth','Tutdasgwefgs'],['Gustavobtgym','Amandaikghd'],['Pedroryjfs','Maryyxjvfb'],['Douglasxhjxdh','Caiolmxzsdk'],['AGabriel3wefsd','AWerneckasfq'],['AYasminhtyhd','AMayaraffrewg'],['ALucianosdgvrth','ATutdasgwefgs'],['AGustavobtgym','AAmandaikghd'],['APedroryjfs','AMaryyxjvfb'],['ADouglasxhjxdh','ACaiolmxzsdk'],[]]
+        #participantesOriginais = [['Gabriel3wefsd','Werneckasfq'],['Yasminhtyhd','Mayaraffrewg'],['Lucianosdgvrth','Tutdasgwefgs'],['Gustavobtgym','Amandaikghd'],['Pedroryjfs','Maryyxjvfb'],['Douglasxhjxdh','Caiolmxzsdk'],['AGabriel3wefsd','AWerneckasfq'],['AYasminhtyhd','AMayaraffrewg'],['ALucianosdgvrth','ATutdasgwefgs'],['AGustavobtgym','AAmandaikghd'],['APedroryjfs','AMaryyxjvfb'],['ADouglasxhjxdh','ACaiolmxzsdk'],[]]
+        #participantesVivosLista = ['Gabriel3wefsd','Werneckasfq','Yasminhtyhd','Mayaraffrewg','Lucianosdgvrth','Tutdasgwefgs','Gustavobtgym','Amandaikghd','Pedroryjfs','Maryyxjvfb','Douglasxhjxdh','Caiolmxzsdk','AGabriel3wefsd','AWerneckasfq','AYasminhtyhd','AMayaraffrewg','ALucianosdgvrth','ATutdasgwefgs','AGustavobtgym','AAmandaikghd','APedroryjfs','AMaryyxjvfb','ADouglasxhjxdh','ACaiolmxzsdk']
+        #cont = 24
         break
         #endregion
 
@@ -282,7 +282,7 @@ As inscrições terminam em 10 minutos
                     break
 
 
-            tweetarXmin(statusText, 300)
+            tweetarXmin(statusText, 150)
         # endregion
 
         if (acabou):
@@ -329,12 +329,12 @@ As inscrições terminam em 10 minutos
         if(not contador % MAX_LINHAS == 0):
             if(metade):
                 tweet = api.user_timeline(screen_name=api.me().screen_name, count=1, tweet_mode='extended')[0]
-                tweetarXminReply(statusText, min(300, 30*contador), tweet)
+                tweetarXminReply(statusText, min(300, 15*contador), tweet)
             else:
-                tweetarXmin(statusText, min(30*contador, 300))
+                tweetarXmin(statusText, min(15*contador, 300))
                 statusText = ''
         else:
-            esperar(min(300, 30*contador))
+            esperar(min(300, 15*contador))
         #endregion
 
         #region Evento morrer sozinho (+15~300 segs)
@@ -370,7 +370,7 @@ As inscrições terminam em 10 minutos
                     tweetarXminReply(statusText, 10, tweet)
         if(statusText):
             if(not metade):
-                tweetarXmin(statusText, 30*contador)
+                tweetarXmin(statusText, 15*contador)
             else:
                 esperar(15*contador)
         #endregion
@@ -487,7 +487,7 @@ As inscrições terminam em 10 minutos
                     tweetarXminReply(statusText, 10, tweet)
                     statusText = ''
         if(not metade):
-            tweetarXmin(statusText, 30*contador)
+            tweetarXmin(statusText,15*contador)
         else:
             esperar(15*contador)
         #endregion
