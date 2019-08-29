@@ -129,102 +129,100 @@ As inscrições terminam em 30 minutos
 
     print("Pegando nomes do último status")
     tweet = api.user_timeline(screen_name=api.me().screen_name, count=1, tweet_mode='extended')[0]
-    replies = tweepy.Cursor(api.search, q=f'to:@{api.me().screen_name}', since_id=tweet.id, tweet_mode='extended').items()
+    replies = tweepy.Cursor(api.search, q=f'to:@{api.me().screen_name}',result_type="recent", since_id=tweet.id, tweet_mode='extended').items()
+    #replies = tweepy.Cursor(api.search, q=f'to:@{api.me().screen_name}', since_id=tweet.id, tweet_mode='extended').items()
     participantesVivos = [[]]
     participantesOriginais = [[]]
     participantesVivosLista = []
     cont = 0
     i = 0
+    '''
     while cont < 24:
 
         #region Juntando os participantes das respostas do ultimo tweet nos vetores de participantes
         try:
-            reply = replies.next()
-            # print(reply.user.screen_name)
-            adicionado = False
-            for linha in participantesVivos:
-                for participante in linha:
+            for reply in replies:
+                adicionado = False
+                print(reply)
+                for participante in participantesVivosLista:
                     if(participante == reply.user.screen_name):
                         adicionado = True
                         break
-                if(adicionado):
+                if (not adicionado):
+                    participantesVivosLista.append(reply.user.screen_name)
+            reply = replies.next()
+            # print(reply.user.screen_name)
+            adicionado = False
+            print(reply)
+            for participante in participantesVivosLista:
+                if(participante == reply.user.screen_name):
+                    adicionado = True
                     break
             if(adicionado):
                 continue
-            '''
-            if(cont % 2 == 0):
-                participantesVivos[i].append(reply.user.screen_name)
-                participantesOriginais[i].append(reply.user.screen_name)
-            else:
-                participantesVivos[i].append(reply.user.screen_name)
-                participantesOriginais[i].append(reply.user.screen_name)
-                participantesVivos.append([])
-                participantesOriginais.append([])
-                i += 1
-            '''
             participantesVivosLista.append(reply.user.screen_name)
+            
             #cont += 1
         except:
             print("Não há mais replies")
             break
-
         #endregion
+    '''
+    for reply in replies:
+        adicionado = False
+        print(reply)
+        for participante in participantesVivosLista:
+            if (participante == reply.user.screen_name):
+                print("Participante já adicionado")
+                adicionado = True
+                break
+        if (not adicionado):
+            participantesVivosLista.append(reply.user.screen_name)
 
-        #region Juntando 24 pessoas aleatórias das que responderam o último tweet (pra não ser os primeiros)
-        cont = 0
-        i = 0
-        if (len(participantesVivosLista) >= 24):
-            participantesVivosLista = random.sample(participantesVivosLista, 24)
-            for pessoa in participantesVivosLista:
-                if (cont % 2 == 0):
-                    participantesVivos[i].append(pessoa)
-                    participantesOriginais[i].append(pessoa)
-                else:
-                    participantesVivos[i].append(pessoa)
-                    participantesOriginais[i].append(pessoa)
-                    participantesVivos.append([])
-                    participantesOriginais.append([])
-                    i += 1
-                cont += 1
-                if (cont == 24):
-                    break
-        else:
-            for pessoa in participantesVivosLista:
-                if (cont % 2 == 0):
-                    participantesVivos[i].append(pessoa)
-                    participantesOriginais[i].append(pessoa)
-                else:
-                    participantesVivos[i].append(pessoa)
-                    participantesOriginais[i].append(pessoa)
-                    participantesVivos.append([])
-                    participantesOriginais.append([])
-                    i += 1
-                cont += 1
-        # endregion
+    print(f"Participantes: {participantesVivosLista}")
 
-        #region Adicionado listas predefinidas para testes
-        #participantesVivos = [['Gabriel3wefsd','Werneckasfq'],['Yasminhtyhd','Mayaraffrewg'],['Lucianosdgvrth','Tutdasgwefgs'],['Gustavobtgym','Amandaikghd'],['Pedroryjfs','Maryyxjvfb'],['Douglasxhjxdh','Caiolmxzsdk'],['AGabriel3wefsd','AWerneckasfq'],['AYasminhtyhd','AMayaraffrewg'],['ALucianosdgvrth','ATutdasgwefgs'],['AGustavobtgym','AAmandaikghd'],['APedroryjfs','AMaryyxjvfb'],['ADouglasxhjxdh','ACaiolmxzsdk'],[]]
-        #participantesOriginais = [['Gabriel3wefsd','Werneckasfq'],['Yasminhtyhd','Mayaraffrewg'],['Lucianosdgvrth','Tutdasgwefgs'],['Gustavobtgym','Amandaikghd'],['Pedroryjfs','Maryyxjvfb'],['Douglasxhjxdh','Caiolmxzsdk'],['AGabriel3wefsd','AWerneckasfq'],['AYasminhtyhd','AMayaraffrewg'],['ALucianosdgvrth','ATutdasgwefgs'],['AGustavobtgym','AAmandaikghd'],['APedroryjfs','AMaryyxjvfb'],['ADouglasxhjxdh','ACaiolmxzsdk'],[]]
-        #participantesVivosLista = ['Gabriel3wefsd','Werneckasfq','Yasminhtyhd','Mayaraffrewg','Lucianosdgvrth','Tutdasgwefgs','Gustavobtgym','Amandaikghd','Pedroryjfs','Maryyxjvfb','Douglasxhjxdh','Caiolmxzsdk','AGabriel3wefsd','AWerneckasfq','AYasminhtyhd','AMayaraffrewg','ALucianosdgvrth','ATutdasgwefgs','AGustavobtgym','AAmandaikghd','APedroryjfs','AMaryyxjvfb','ADouglasxhjxdh','ACaiolmxzsdk']
-        #cont = 24
-        break
-        #endregion
+    #region Juntando 24 pessoas aleatórias das que responderam o último tweet (pra não ser os primeiros)
+    cont = 0
+    i = 0
+    if (len(participantesVivosLista) >= 24):
+        participantesVivosLista = random.sample(participantesVivosLista, 24)
+        for pessoa in participantesVivosLista:
+            if (cont % 2 == 0):
+                participantesVivos[i].append(pessoa)
+                participantesOriginais[i].append(pessoa)
+            else:
+                participantesVivos[i].append(pessoa)
+                participantesOriginais[i].append(pessoa)
+                participantesVivos.append([])
+                participantesOriginais.append([])
+                i += 1
+            cont += 1
+            if (cont == 24):
+                break
+    else:
+        for pessoa in participantesVivosLista:
+            if (cont % 2 == 0):
+                participantesVivos[i].append(pessoa)
+                participantesOriginais[i].append(pessoa)
+            else:
+                participantesVivos[i].append(pessoa)
+                participantesOriginais[i].append(pessoa)
+                participantesVivos.append([])
+                participantesOriginais.append([])
+                i += 1
+            cont += 1
+    # endregion
+
+    #region Adicionado listas predefinidas para testes
+    #participantesVivos = [['Gabriel3wefsd','Werneckasfq'],['Yasminhtyhd','Mayaraffrewg'],['Lucianosdgvrth','Tutdasgwefgs'],['Gustavobtgym','Amandaikghd'],['Pedroryjfs','Maryyxjvfb'],['Douglasxhjxdh','Caiolmxzsdk'],['AGabriel3wefsd','AWerneckasfq'],['AYasminhtyhd','AMayaraffrewg'],['ALucianosdgvrth','ATutdasgwefgs'],['AGustavobtgym','AAmandaikghd'],['APedroryjfs','AMaryyxjvfb'],['ADouglasxhjxdh','ACaiolmxzsdk'],[]]
+    #participantesOriginais = [['Gabriel3wefsd','Werneckasfq'],['Yasminhtyhd','Mayaraffrewg'],['Lucianosdgvrth','Tutdasgwefgs'],['Gustavobtgym','Amandaikghd'],['Pedroryjfs','Maryyxjvfb'],['Douglasxhjxdh','Caiolmxzsdk'],['AGabriel3wefsd','AWerneckasfq'],['AYasminhtyhd','AMayaraffrewg'],['ALucianosdgvrth','ATutdasgwefgs'],['AGustavobtgym','AAmandaikghd'],['APedroryjfs','AMaryyxjvfb'],['ADouglasxhjxdh','ACaiolmxzsdk'],[]]
+    #participantesVivosLista = ['Gabriel3wefsd','Werneckasfq','Yasminhtyhd','Mayaraffrewg','Lucianosdgvrth','Tutdasgwefgs','Gustavobtgym','Amandaikghd','Pedroryjfs','Maryyxjvfb','Douglasxhjxdh','Caiolmxzsdk','AGabriel3wefsd','AWerneckasfq','AYasminhtyhd','AMayaraffrewg','ALucianosdgvrth','ATutdasgwefgs','AGustavobtgym','AAmandaikghd','APedroryjfs','AMaryyxjvfb','ADouglasxhjxdh','ACaiolmxzsdk']
+    #cont = 24
+    #endregion
 
 
     #region Não há pessoas suficientes pra prosseguir o evento, completando com bots!
     if (cont < 24):
-        '''
-        file = open("flop.txt", 'r')
-        flop = int(file.readline())
-        file.close()
-        flop += 1
-        statusText = f"Preciso de pelo menos 6 pessoas pra rodar o evento :( \n#NaoVaiTerHG , esse é o {flop}º flop :("
-        tweetarXmin(statusText, 0)
-        file = open("flop.txt", 'w')
-        file.write(str(flop))
-        file.close()
-        return None
-        '''
         file = open("bots.txt", "r")
         bots = file.readlines()
         file.close()
@@ -235,6 +233,7 @@ As inscrições terminam em 30 minutos
             num = str(random.randint(100,999))
             participantesVivos[i].append("Bot"+bot.strip()+str(num))
             participantesOriginais[i].append("Bot"+bot.strip()+str(num))
+            participantesVivosLista.append("Bot"+bot.strip()+str(num))
             if (cont % 2 == 1):
                 participantesVivos.append([])
                 participantesOriginais.append([])
