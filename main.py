@@ -5,18 +5,20 @@ import random, io, time
 QTDEVENTOS = 3
 MAX_LINHAS = 5
 
+arq = open("edicao.txt", "r")
+for linha in arq:
+    edicao = linha
+arq.close()
 todosEmotes = []
 frasesTXT = open("frases.txt", "r")
 frases = []
 for linha in frasesTXT:
     frases.append(linha.strip())
-print(frases)
 frasesTXT.close()
 desenhosTXT = io.open("desenhos.txt", "r")
 desenhos = []
 for linha in desenhosTXT:
     desenhos.append(linha.strip())
-print(desenhos)
 chavesTXT = open("chaves.txt", "r")
 chaves = []
 for linha in chavesTXT:
@@ -110,16 +112,19 @@ def anunciarMortos(mortesDoDia, participantesOriginais, participantesVivosLista,
 def hungerGamesEvent():
 
     #region Post de inscrição dos tributos (+600 segs)
-    statusText = '''
-QUE COMECEM OS JOGOS VORAZES
+    statusText = f'''
+QUE COMECEM OS JOGOS VORAZES {edicao} 
 Para participar comente algo nesse status, deixe seu grito de guerra, seu texto motivacional, qlqr coisa.
 Você será notificado da sua participação
 Se ganhar vc será reconhecido ;)
 
 RT/Fav pra fortalecer o bot <3
-As inscrições terminam em 10 minutos
+As inscrições terminam em 30 minutos
 '''
-    tweetarXmin(statusText, 600)
+    arq = open("edicao.txt", "w")
+    arq.write(str(int(edicao) + 1))
+    arq.close()
+    tweetarXmin(statusText, 1800)
     # endregion
 
     print("Pegando nomes do último status")
@@ -146,6 +151,7 @@ As inscrições terminam em 10 minutos
                     break
             if(adicionado):
                 continue
+            '''
             if(cont % 2 == 0):
                 participantesVivos[i].append(reply.user.screen_name)
                 participantesOriginais[i].append(reply.user.screen_name)
@@ -155,12 +161,46 @@ As inscrições terminam em 10 minutos
                 participantesVivos.append([])
                 participantesOriginais.append([])
                 i += 1
+            '''
             participantesVivosLista.append(reply.user.screen_name)
-            cont += 1
+            #cont += 1
         except:
             print("Não há mais replies")
             break
+
         #endregion
+
+        #region Juntando 24 pessoas aleatórias das que responderam o último tweet (pra não ser os primeiros)
+        cont = 0
+        i = 0
+        if (len(participantesVivosLista) >= 24):
+            participantesVivosLista = random.sample(participantesVivosLista, 24)
+            for pessoa in participantesVivosLista:
+                if (cont % 2 == 0):
+                    participantesVivos[i].append(pessoa)
+                    participantesOriginais[i].append(pessoa)
+                else:
+                    participantesVivos[i].append(pessoa)
+                    participantesOriginais[i].append(pessoa)
+                    participantesVivos.append([])
+                    participantesOriginais.append([])
+                    i += 1
+                cont += 1
+                if (cont == 24):
+                    break
+        else:
+            for pessoa in participantesVivosLista:
+                if (cont % 2 == 0):
+                    participantesVivos[i].append(pessoa)
+                    participantesOriginais[i].append(pessoa)
+                else:
+                    participantesVivos[i].append(pessoa)
+                    participantesOriginais[i].append(pessoa)
+                    participantesVivos.append([])
+                    participantesOriginais.append([])
+                    i += 1
+                cont += 1
+        # endregion
 
         #region Adicionado listas predefinidas para testes
         #participantesVivos = [['Gabriel3wefsd','Werneckasfq'],['Yasminhtyhd','Mayaraffrewg'],['Lucianosdgvrth','Tutdasgwefgs'],['Gustavobtgym','Amandaikghd'],['Pedroryjfs','Maryyxjvfb'],['Douglasxhjxdh','Caiolmxzsdk'],['AGabriel3wefsd','AWerneckasfq'],['AYasminhtyhd','AMayaraffrewg'],['ALucianosdgvrth','ATutdasgwefgs'],['AGustavobtgym','AAmandaikghd'],['APedroryjfs','AMaryyxjvfb'],['ADouglasxhjxdh','ACaiolmxzsdk'],[]]
@@ -171,11 +211,36 @@ As inscrições terminam em 10 minutos
         #endregion
 
 
-    #region Não há pessoas suficientes pra prosseguir o evento
-    if (cont < 6):
-        statusText = "Preciso de pelo menos 6 pessoas pra rodar o evento :( \n#NaoVaiTerHG"
+    #region Não há pessoas suficientes pra prosseguir o evento, completando com bots!
+    if (cont < 24):
+        '''
+        file = open("flop.txt", 'r')
+        flop = int(file.readline())
+        file.close()
+        flop += 1
+        statusText = f"Preciso de pelo menos 6 pessoas pra rodar o evento :( \n#NaoVaiTerHG , esse é o {flop}º flop :("
         tweetarXmin(statusText, 0)
+        file = open("flop.txt", 'w')
+        file.write(str(flop))
+        file.close()
         return None
+        '''
+        file = open("bots.txt", "r")
+        bots = file.readlines()
+        file.close()
+        qtdBots = 24 - cont
+        listaBots = random.sample(bots, qtdBots)
+        while cont < 24:
+            bot = listaBots.pop()
+            num = str(random.randint(100,999))
+            participantesVivos[i].append("Bot"+bot.strip()+str(num))
+            participantesOriginais[i].append("Bot"+bot.strip()+str(num))
+            if (cont % 2 == 1):
+                participantesVivos.append([])
+                participantesOriginais.append([])
+                i += 1
+            cont += 1
+        print(participantesOriginais)
     #endregion
 
     #region Carregando as frases de 'frases HG.txt' em seus respectivos vetores e misturando os vetores
@@ -386,58 +451,7 @@ As inscrições terminam em 10 minutos
             tweetarXmin(statusText, 150)
         #endregion
 
-        #region Anunciar mortos do dia (old)
-        '''
-        metade = False
-        contador = 0
-        if(len(mortesDoDia) > 0):
-            if(len(mortesDoDia) == 1):
-                i = 1
-                for linha in participantesOriginais:
-                    if(mortesDoDia[0] in linha):
-                        statusText = f"hoje fora ouvido apenas um tiro de canhão: \n@{mortesDoDia[0]} do distrito {i}\nserá isso bom ou ruim?"
-                        break
-                    i += 1
-            else:
-                statusText = f'Hoje foram ouvidos {len(mortesDoDia)} tiros de canhão a distância:'
-                for morto in mortesDoDia:
-                    statusText += f"\n@{morto} "
-                    i = 1
-                    for linha in participantesOriginais:
-                        if (morto in linha):
-                            statusText += f"do distrito {i}"
-                            break
-                        i += 1
-                    contador += 1
-                    if (contador % MAX_LINHAS == 0):
-                        if(not metade):
-                            metade = True
-                            tweetarXmin(statusText, 10)
-                            statusText = ""
-                        else:
-                            tweet = api.user_timeline(screen_name=api.me().screen_name, count=1, tweet_mode='extended')[0]
-                            tweetarXminReply(statusText, 30 * contador, tweet)
-                if(not contador % MAX_LINHAS  == 0):
-                    if (metade):
-                        tweet = api.user_timeline(screen_name=api.me().screen_name, count=1, tweet_mode='extended')[0]
-                        if (len(participantesVivosLista) > 1):
-                            tweetarXminReply(statusText, min(30 * contador, 300), tweet)
-                        else:
-                            tweetarXminReply(statusText, min(30), tweet)
-                    else:
-                        if(len(participantesVivosLista) > 1):
-                            tweetarXmin(statusText, min(30 * contador,300))
-                        else:
-                            tweetarXmin(statusText, 30)
-                        statusText = ""
-
-
-            if (len(participantesVivosLista) == 1):
-                statusText += f"\nCom isso @{participantesVivosLista[0]} vence a edição\nParabéns, merecidamente!\ndeixe seu Fav+RT e siga a página para mais ;)"
-                tweet = api.user_timeline(screen_name=api.me().screen_name, count=1, tweet_mode='extended')[0]
-                tweetarXminReply(statusText, 0, tweet)
-                return None
-        '''
+        #region Anunciar mortos do dia se não tiver terminado o evento
         if(len(mortesDoDia) == 0):
             statusText = eventoSemTiro[cEST]
             cEST += 1
@@ -447,54 +461,7 @@ As inscrições terminam em 10 minutos
         if (len(participantesVivosLista) == 1):
             acabou = True
             break
-
         #endregion
-
-        #region Evento da noite (30~300 segs)
-        addSorte = 0
-        sorte = random.randint(0, 100)
-        statusText = f"Noite {dia}:"
-        listaNoite = random.sample(participantesVivosLista, len(participantesVivosLista))
-        contador = 1
-
-        metade = False
-        while sorte <= 100:
-            addSorte += random.randint(15,30)
-            sorte = random.randint(0, 60)
-            dado = random.randint(0,4)
-            if(dado):
-                pessoa = listaNoite.pop()
-                statusText += f"\n@{pessoa} {noite[cN]}"
-                cN += 1
-            elif(len(listaNoite) >= 2 and len(participantesVivosLista) >= 4):
-                pessoa, dupla = listaNoite.pop(), listaNoite.pop()
-                statusText += f"\n@{pessoa} e @{dupla} {noiteEmDupla[cNED]}"
-                cNED += 1
-            else:
-                pessoa = listaNoite.pop()
-                statusText += f"\n@{pessoa} achou {items[cI]}"
-                cI += 1
-            if(not listaNoite):
-                break
-            contador += 1
-            if(contador % MAX_LINHAS == 0):
-                if(not metade):
-                    tweetarXmin(statusText, 10)
-                    statusText = ''
-                    metade = True
-                else:
-                    tweet = api.user_timeline(screen_name=api.me().screen_name, count=1, tweet_mode='extended')[0]
-                    tweetarXminReply(statusText, 10, tweet)
-                    statusText = ''
-        if(not metade):
-            tweetarXmin(statusText,15*contador)
-        else:
-            esperar(15*contador)
-        #endregion
-
-        dia += 1
-
-
 
         #region Evento para os 2 útilmos participantes
         if (len(participantesVivosLista) == 2):
@@ -521,6 +488,50 @@ ambos decidem se matar em protesto ao banho de sangue
             return None
         #endregion
 
+        #region Evento da noite (30~300 segs)
+
+        addSorte = 0
+        sorte = random.randint(0, 100)
+        statusText = f"Noite {dia}:"
+        listaNoite = random.sample(participantesVivosLista, len(participantesVivosLista))
+        contador = 1
+
+        metade = False
+        while sorte <= 100:
+            addSorte += random.randint(15, 30)
+            sorte = random.randint(0, 60)
+            dado = random.randint(0, 4)
+            if (dado):
+                pessoa = listaNoite.pop()
+                statusText += f"\n@{pessoa} {noite[cN]}"
+                cN += 1
+            elif (len(listaNoite) >= 2 and len(participantesVivosLista) >= 4):
+                pessoa, dupla = listaNoite.pop(), listaNoite.pop()
+                statusText += f"\n@{pessoa} e @{dupla} {noiteEmDupla[cNED]}"
+                cNED += 1
+            else:
+                pessoa = listaNoite.pop()
+                statusText += f"\n@{pessoa} achou {items[cI]}"
+                cI += 1
+            if (not listaNoite):
+                break
+            contador += 1
+            if (contador % MAX_LINHAS == 0):
+                if (not metade):
+                    tweetarXmin(statusText, 10)
+                    statusText = ''
+                    metade = True
+                else:
+                    tweet = api.user_timeline(screen_name=api.me().screen_name, count=1, tweet_mode='extended')[0]
+                    tweetarXminReply(statusText, 10, tweet)
+                    statusText = ''
+        if (not metade):
+            tweetarXmin(statusText, 15 * contador)
+        else:
+            esperar(15 * contador)
+        # endregion
+
+        dia += 1
 
     #region 1 sobreviveu
     vencedor = participantesVivosLista[0]
@@ -635,7 +646,7 @@ def main():
     resp = input('''
     Escolha uma opção:
     1 - Tweetar
-    2 - Testar tweet específico
+    2 - Rodar HG
     S - sair
     ''')
     if(resp == "1"):
@@ -645,4 +656,5 @@ def main():
     else:
         print('flw enton')
 if __name__ == "__main__":
-    main()
+    hungerGamesEvent()
+    #main()

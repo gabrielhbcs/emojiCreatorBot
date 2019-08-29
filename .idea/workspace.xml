@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c001d00-7f46-4faa-bfce-26a036d0d3cc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frases.txt" beforeDir="false" afterPath="$PROJECT_DIR$/frases.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,28 +33,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="753">
-              <caret line="163" selection-start-line="163" selection-end-line="163" />
+            <state relative-caret-position="304">
+              <caret line="126" column="31" selection-start-line="126" selection-start-column="31" selection-end-line="126" selection-end-column="31" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-                <element signature="e#1149#1281#0" />
-                <element signature="e#1535#3826#0" />
-                <element signature="e#1537#1587#0" />
-                <element signature="e#5631#5681#0" />
-                <element signature="e#4842#4900#0" />
-                <element signature="e#5086#5185#0" />
-                <element signature="e#6333#6400#0" />
-                <element signature="e#7220#7334#0" />
-                <element signature="e#8268#8326#0" />
-                <element signature="e#12167#12230#0" />
-                <element signature="e#14101#14145#0" />
-                <element signature="e#15719#15759#0" />
-                <element signature="e#15999#16035#0" />
-                <element signature="e#19203#19240#0" />
-                <element signature="e#20818#20864#0" />
-                <element signature="e#21789#21809#0" />
-                <element signature="e#15456#19423#0" />
+                <element signature="e#9686#9785#0" />
+                <element signature="e#10345#10412#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bots.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -58,8 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testar.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="22" selection-start-column="22" selection-end-column="22" />
+            <state relative-caret-position="136">
+              <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -89,11 +87,16 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/main.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/testar.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/registros" />
+        <option value="$PROJECT_DIR$/flop.txt" />
+        <option value="$PROJECT_DIR$/edicao.txt" />
         <option value="$PROJECT_DIR$/testar.py" />
+        <option value="$PROJECT_DIR$/bots.txt" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -109,6 +112,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -120,7 +124,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -207,29 +210,44 @@
       <updated>1559449762440</updated>
       <workItem from="1559449763785" duration="10083000" />
       <workItem from="1559488213103" duration="30668000" />
+      <workItem from="1559525839517" duration="1577000" />
+      <workItem from="1559528306435" duration="620000" />
+      <workItem from="1559582580577" duration="1963000" />
+      <workItem from="1559836950814" duration="1310000" />
+      <workItem from="1560300287960" duration="2235000" />
+      <workItem from="1560437309172" duration="2491000" />
+      <workItem from="1560440754174" duration="1773000" />
+      <workItem from="1560619451116" duration="78000" />
+      <workItem from="1560988084303" duration="1149000" />
+      <workItem from="1562120151747" duration="1649000" />
+      <workItem from="1563845821887" duration="68000" />
+      <workItem from="1565833079622" duration="2163000" />
+      <workItem from="1565883159150" duration="54000" />
+      <workItem from="1567086130133" duration="1978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40751000" />
+    <option name="totallyTimeSpent" value="59859000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49663526" visible="true" weight="0.25358167" />
-      <window_info id="Structure" order="1" sideWeight="0.50336474" side_tool="true" visible="true" weight="0.25358167" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47239265" visible="true" weight="0.21060172" />
+      <window_info id="Structure" order="1" sideWeight="0.5276074" side_tool="true" visible="true" weight="0.21060172" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34320322" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49641833" visible="true" weight="0.34185734" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49856734" weight="0.39973083" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50358164" side_tool="true" visible="true" weight="0.34185734" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -243,40 +261,60 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BotCriador$main.coverage" NAME="main Coverage Results" MODIFIED="1559520206795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BotCriador$testar.coverage" NAME="testar Coverage Results" MODIFIED="1559498639366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BotCriador$main.coverage" NAME="main Coverage Results" MODIFIED="1567087922810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BotCriador$testar.coverage" NAME="testar Coverage Results" MODIFIED="1567087918666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/testar.py">
+    <entry file="file://D:/Python 3/Lib/typing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="1528" column="8" selection-start-line="1528" selection-start-column="8" selection-end-line="1528" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/registros">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edicao.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
+          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flop.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bots.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="753">
-          <caret line="163" selection-start-line="163" selection-end-line="163" />
+        <state relative-caret-position="304">
+          <caret line="126" column="31" selection-start-line="126" selection-start-column="31" selection-end-line="126" selection-end-column="31" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#1149#1281#0" />
-            <element signature="e#1535#3826#0" />
-            <element signature="e#1537#1587#0" />
-            <element signature="e#5631#5681#0" />
-            <element signature="e#4842#4900#0" />
-            <element signature="e#5086#5185#0" />
-            <element signature="e#6333#6400#0" />
-            <element signature="e#7220#7334#0" />
-            <element signature="e#8268#8326#0" />
-            <element signature="e#12167#12230#0" />
-            <element signature="e#14101#14145#0" />
-            <element signature="e#15719#15759#0" />
-            <element signature="e#15999#16035#0" />
-            <element signature="e#19203#19240#0" />
-            <element signature="e#20818#20864#0" />
-            <element signature="e#21789#21809#0" />
-            <element signature="e#15456#19423#0" />
+            <element signature="e#9686#9785#0" />
+            <element signature="e#10345#10412#0" />
           </folding>
         </state>
       </provider>
