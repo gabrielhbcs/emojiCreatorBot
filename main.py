@@ -116,10 +116,10 @@ def hungerGamesEvent():
 QUE COMECEM OS JOGOS VORAZES {edicao} 
 Para participar comente algo nesse status, deixe seu grito de guerra, seu texto motivacional, qlqr coisa.
 Você será notificado da sua participação
-Se ganhar vc será reconhecido ;)
 
 RT/Fav pra fortalecer o bot <3
 As inscrições terminam em 30 minutos
+#JogosVorazes
 '''
     arq = open("edicao.txt", "w")
     arq.write(str(int(edicao) + 1))
